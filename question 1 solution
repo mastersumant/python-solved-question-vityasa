@@ -1,0 +1,31 @@
+import json
+items=[]
+n=int(input())
+for i in range(n):
+	items.append(input())
+    
+average=0.0
+valid=0
+valid_list=[]
+invalid_list=[]
+for item in items:
+    if item.isdigit():
+        if int(item)>0:
+            valid_list.append(int(item))
+        else:
+            invalid_list.append(item)
+    else:
+        invalid_list.append(item)
+valid=len(valid_list)
+average=sum(valid_list)/valid
+min_item=min(i for i in valid_list if i>0)
+max_item=max(i for i in valid_list if i>0)
+stats={}
+stats["valid_entries"]=valid
+stats["invalid_entries"]=n-valid
+stats["min"]=min_item
+stats["max"]=max_item
+stats["average"]=average
+
+stats_json = json.dumps(stats, indent = 4)
+print(stats_json)
